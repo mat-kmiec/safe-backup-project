@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.matkmiec.backup.dto.AuthRequestDto;
+import pl.matkmiec.backup.exception.PasswordMismatchException;
 import pl.matkmiec.backup.exception.UserAlreadyExists;
+import pl.matkmiec.backup.exception.UserNotFoundException;
 import pl.matkmiec.backup.service.AuthService;
 
 @RestController
@@ -22,7 +24,10 @@ public class AuthController {
     /** The service used for authentication-related operations. */
     private final AuthService authService;
 
-    /** Registers a new user. */
+    /** Register a new user.
+     * @param authRequestDto The request body containing user information.
+     * @return A response entity indicating the result of the registration process.
+     * */
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserAlreadyExists {
         authService.register(authRequestDto);
@@ -31,7 +36,7 @@ public class AuthController {
 
     /** Login a user. */
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody AuthRequestDto authRequestDto) {
+    public ResponseEntity<String> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
         String token = authService.login(authRequestDto);
         return ResponseEntity.ok(token);
     }
