@@ -1,0 +1,26 @@
+# --- IntelliJ / VS Code ---
+.idea/
+*.iml
+*.iws
+.vscode/
+out/
+
+# --- Backend (Spring / Maven) ---
+backend/target/
+backend/build/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+*.log
+*.mv.db
+
+# --- Docker & System ---
+.DS_Store
+Thumbs.db
+.env
+docker-data/
+postgres-data/
+
+# --- Temporary files ---
+*.tmp
+*.bak
