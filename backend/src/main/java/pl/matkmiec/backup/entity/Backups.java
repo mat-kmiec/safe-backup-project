@@ -41,7 +41,7 @@ public class Backups {
     /** The payload of the backup (e.g., SMS content, contact details). */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(nullable = false, columnDefinition = "jsonb", name = "payload")
-    private String payLoad;
+    private String payload;
 
     /** The timestamp of when the backup was created. */
     @CreationTimestamp

@@ -1,4 +1,4 @@
 package pl.matkmiec.backup.exception;
 
-public class UserNotFoundException extends Throwable {
+public class UserNotFoundException extends RuntimeException {
 }

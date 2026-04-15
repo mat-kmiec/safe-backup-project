@@ -1,4 +1,4 @@
 package pl.matkmiec.backup.exception;
 
-public class UserAlreadyExists extends Throwable {
+public class UserAlreadyExists extends RuntimeException{
 }
