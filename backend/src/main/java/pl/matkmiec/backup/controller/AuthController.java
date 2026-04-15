@@ -1,5 +1,7 @@
 package pl.matkmiec.backup.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -30,6 +32,8 @@ public class AuthController {
      * @return A response entity indicating the result of the registration process.
      * @throws UserAlreadyExists If the user already exists.
      * */
+    @Operation(summary = "Register a new user", description = "Registers a new user with the provided credentials.")
+    @ApiResponse(responseCode = "201", description = "User registered successfully")
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserAlreadyExists {
         authService.register(authRequestDto);
@@ -42,6 +46,8 @@ public class AuthController {
      * @throws UserNotFoundException If the user is not found.
      * @throws PasswordMismatchException If the password is incorrect.
      * */
+    @Operation(summary = "Login a user", description = "Logs in a user with the provided credentials.")
+    @ApiResponse(responseCode = "200", description = "User logged in successfully")
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
         String token = authService.login(authRequestDto);
