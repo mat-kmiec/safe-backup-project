@@ -38,12 +38,12 @@ public class AuthController {
 
     /** Login a user.
      * @param authRequestDto The request body containing user credentials.
-     * @return A JWT token representing the user's authentication.
+     * @return A response entity containing the JWT token and user information if the login is successful.
      * @throws UserNotFoundException If the user is not found.
      * @throws PasswordMismatchException If the password is incorrect.
      * */
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
+    public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
         String token = authService.login(authRequestDto);
         return ResponseEntity.ok(AuthResponseDto.builder()
                 .token(token)
