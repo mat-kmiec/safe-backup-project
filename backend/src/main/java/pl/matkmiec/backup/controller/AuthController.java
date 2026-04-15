@@ -1,5 +1,6 @@
 package pl.matkmiec.backup.controller;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -45,6 +46,7 @@ public class AuthController {
      * @throws PasswordMismatchException If the password is incorrect.
      * */
     @Operation(summary = "Login a user", description = "Logs in a user with the provided credentials.")
+    @RateLimiter(name = "login")
     @ApiResponse(responseCode = "200", description = "User logged in successfully")
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
