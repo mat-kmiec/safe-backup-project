@@ -7,6 +7,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /** * Entity representing a backup in the system.
  * Each backup is associated with a user and has a specific type (e.g., SMS, CONTACTS).
@@ -24,7 +25,7 @@ public class Backups {
     /** The unique identifier of the backup. */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private UUID id;
 
     /** The user associated with the backup. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +40,7 @@ public class Backups {
 
     /** The payload of the backup (e.g., SMS content, contact details). */
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(nullable = false, columnDefinition = "jsonb")
+    @Column(nullable = false, columnDefinition = "jsonb", name = "payload")
     private String payLoad;
 
     /** The timestamp of when the backup was created. */

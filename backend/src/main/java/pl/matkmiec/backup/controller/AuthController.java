@@ -27,6 +27,7 @@ public class AuthController {
     /** Register a new user.
      * @param authRequestDto The request body containing user information.
      * @return A response entity indicating the result of the registration process.
+     * @throws UserAlreadyExists If the user already exists.
      * */
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserAlreadyExists {
@@ -34,7 +35,12 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
-    /** Login a user. */
+    /** Login a user.
+     * @param authRequestDto The request body containing user credentials.
+     * @return A JWT token representing the user's authentication.
+     * @throws UserNotFoundException If the user is not found.
+     * @throws PasswordMismatchException If the password is incorrect.
+     * */
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid @RequestBody AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
         String token = authService.login(authRequestDto);
