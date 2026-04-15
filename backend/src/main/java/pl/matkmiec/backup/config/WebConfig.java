@@ -1,11 +1,13 @@
 package pl.matkmiec.backup.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /** Configuration for CORS and other web-related settings.
  * Allows requests from the frontend to the backend.
  * */
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
 
     /** Configure Cross-Origin Resource Sharing (CORS) for the backend. */
