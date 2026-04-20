@@ -1,6 +1,7 @@
 package pl.matkmiec.backup.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
 
     /** The repository used for user data access. */
@@ -32,10 +34,11 @@ public class AuthService {
      * @throws UserAlreadyExists If the user already exists.
      */
     @Transactional
-    public void register(AuthRequestDto authRequestDto) throws UserAlreadyExists {
-
+    public void register(AuthRequestDto authRequestDto) {
+        log.info("Attempting to register user: " + authRequestDto.getUsername());
         /** Check if user already exists */
         if(userRepository.existsByUsername(authRequestDto.getUsername())){
+            log.warn("User already exists: " + authRequestDto.getUsername());
             throw new UserAlreadyExists();
         }
 
@@ -48,6 +51,7 @@ public class AuthService {
 
         /** Save user */
         userRepository.save(user);
+        log.info("User registered successfully: " + authRequestDto.getUsername());
     }
 
     /** Login a user.
@@ -57,13 +61,16 @@ public class AuthService {
      * @throws UserNotFoundException If the user is not found.*/
     @Transactional
     public String login(AuthRequestDto authRequestDto) throws UserNotFoundException, PasswordMismatchException {
+        log.info("Attempting to login user: " + authRequestDto.getUsername());
         User user = userRepository.findByUsername(authRequestDto.getUsername())
                 .orElseThrow(UserNotFoundException::new);
 
         if(!passwordEncoder.matches(authRequestDto.getPassword(), user.getPassword())){
+            log.warn("Password mismatch for user: " + authRequestDto.getUsername());
             throw new PasswordMismatchException();
         }
 
+        log.info("User logged in successfully: " + authRequestDto.getUsername());
         return jwtService.generateToken(user.getUsername());
     }
 

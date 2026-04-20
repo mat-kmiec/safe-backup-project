@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import pl.matkmiec.backup.service.AuthService;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Slf4j
 public class AuthController {
 
     /** The service used for authentication-related operations. */
@@ -30,8 +32,11 @@ public class AuthController {
     @Operation(summary = "Register a new user", description = "Registers a new user with the provided credentials.")
     @ApiResponse(responseCode = "201", description = "User registered successfully")
     @PostMapping("/register")
+    @RateLimiter(name = "register")
     public ResponseEntity<String> register(@Valid @RequestBody AuthRequestDto authRequestDto) {
+        log.info("Received registration request for user: {}", authRequestDto.getUsername());
         authService.register(authRequestDto);
+        log.info("User registered successfully: {}", authRequestDto.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
@@ -44,7 +49,9 @@ public class AuthController {
     @ApiResponse(responseCode = "200", description = "User logged in successfully")
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> login(@Valid @RequestBody AuthRequestDto authRequestDto) {
+        log.info("Received login request for user: {}", authRequestDto.getUsername());
         String token = authService.login(authRequestDto);
+        log.info("User logged in successfully: {}", authRequestDto.getUsername());
         return ResponseEntity.ok(AuthResponseDto.builder()
                 .token(token)
                 .username(authRequestDto.getUsername())

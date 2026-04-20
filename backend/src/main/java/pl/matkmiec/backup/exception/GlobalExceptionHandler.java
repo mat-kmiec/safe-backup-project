@@ -1,15 +1,13 @@
 package pl.matkmiec.backup.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import pl.matkmiec.backup.dto.ErrorResponseDto;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
@@ -56,6 +54,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
+    @ExceptionHandler(RequestNotPermitted.class)
+    public ResponseEntity<ErrorResponseDto> handleRateLimitingException(RequestNotPermitted ex, HttpServletRequest request) {
+        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
+                .status(HttpStatus.TOO_MANY_REQUESTS.value())
+                .message("Too Many Requests")
+                .details("Zbyt wiele prób. Spróbuj ponownie za chwilę.")
+                .path(request.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(errorResponseDto);
+    }
+
     /** Handles runtime exceptions that occur during the execution of the application.
      * @param ex The exception to handle.
      * @param request The HTTP request.
@@ -65,7 +76,7 @@ public class GlobalExceptionHandler {
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message("Internal server error")
-                .details(ex.getClass().getSimpleName())
+                .details("An unexpected error occurred")
                 .path(request.getRequestURI())
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -99,7 +110,7 @@ public class GlobalExceptionHandler {
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message("Internal server error")
-                .details(ex.getMessage())
+                .details("An unexpected error occurred")
                 .path(request.getRequestURI())
                 .timestamp(LocalDateTime.now())
                 .build();

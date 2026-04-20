@@ -37,7 +37,6 @@ public class Backups {
     @Column(nullable = false, length = 50)
     private BackupType type;
 
-
     /** The payload of the backup (e.g., SMS content, contact details). */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(nullable = false, columnDefinition = "jsonb", name = "payload")
