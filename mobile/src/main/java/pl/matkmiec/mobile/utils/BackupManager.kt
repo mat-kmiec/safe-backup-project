@@ -20,6 +20,10 @@ data class SmsData(
 
 object BackupManager {
 
+    fun isDefaultSmsApp(context: Context): Boolean {
+        return Telephony.Sms.getDefaultSmsPackage(context) == context.packageName
+    }
+
     fun backupContacts(context: Context): String {
         val list = mutableListOf<ContactData>()
         val uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
@@ -143,4 +147,3 @@ object BackupManager {
         }
     }
 }
-

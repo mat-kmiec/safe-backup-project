@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-28:12
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-88:12
+INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-88:12
+INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-88:12
+INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:2:1-88:12
 MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\d495ed4f3a26719147c48fdf1dcff18f\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\bf682ec3626a7293ce2000865d7ac185\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\de970a8910495bc891a45a7157d87737\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
@@ -68,9 +68,41 @@ uses-permission#android.permission.INTERNET
 ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:5:22-64
+uses-permission#android.permission.READ_CONTACTS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:6:5-72
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:6:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:7:5-73
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:7:22-70
+uses-permission#android.permission.READ_SMS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:8:22-64
+uses-permission#android.permission.WRITE_SMS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:9:5-68
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:9:22-65
+uses-permission#android.permission.SEND_SMS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:10:5-67
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:10:22-64
+uses-permission#android.permission.RECEIVE_SMS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:11:5-70
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:11:22-67
+uses-permission#android.permission.RECEIVE_WAP_PUSH
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:12:5-75
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:12:22-72
+uses-permission#android.permission.RECEIVE_MMS
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:13:5-70
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:13:22-67
 application
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:7:5-26:19
-INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:7:5-26:19
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:15:5-86:19
+INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:15:5-86:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\a485363ae9e77c14ab682c685af0e4de\transformed\jetified-ui-test-manifest-1.6.7\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\a485363ae9e77c14ab682c685af0e4de\transformed\jetified-ui-test-manifest-1.6.7\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.7] C:\Users\mat-k\.gradle\caches\8.14\transforms\77b49ae48efde448910861079e8ab2a2\transformed\jetified-ui-tooling-release\AndroidManifest.xml:22:5-26:19
@@ -92,37 +124,111 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\mat-k\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\mat-k\.gradle\caches\8.14\transforms\a84773f0b20228bc912497b6c7ae0085\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:13:9-35
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:11:9-41
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:19:9-41
 	android:roundIcon
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:12:9-56
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:20:9-56
 	android:icon
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:10:9-45
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:18:9-45
 	android:allowBackup
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:16:9-35
 	android:theme
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:14:9-48
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:22:9-48
 	android:usesCleartextTraffic
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:9:9-44
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:17:9-44
 activity#pl.matkmiec.mobile.MainActivity
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:16:9-24:20
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:24:9-32:20
 	android:exported
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:18:13-36
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:26:13-36
 	android:theme
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:19:13-52
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:27:13-52
 	android:name
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:17:13-41
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:25:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:20:13-23:29
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:28:13-31:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:21:17-69
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:21:25-66
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:29:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:22:17-77
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:22:27-74
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:30:27-74
+activity#pl.matkmiec.mobile.utils.ComposeSmsActivity
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:34:9-51:20
+	android:exported
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:36:13-36
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:35:13-53
+intent-filter#action:name:android.intent.action.SENDTO+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:mms+data:scheme:mmsto+data:scheme:sms+data:scheme:smsto
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:37:13-45:29
+action#android.intent.action.SENDTO
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:38:17-71
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:38:25-68
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:39:17-76
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:39:27-73
+category#android.intent.category.BROWSABLE
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:40:17-78
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:40:27-75
+data
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:41:17-46
+	android:scheme
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:41:23-43
+	android:mimeType
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:49:23-52
+intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:text/plain
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:46:13-50:29
+action#android.intent.action.SEND
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:47:17-69
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:47:25-66
+receiver#pl.matkmiec.mobile.utils.SmsReceiver
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:53:9-60:20
+	android:exported
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:56:13-36
+	android:permission
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:55:13-66
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:54:13-46
+intent-filter#action:name:android.provider.Telephony.SMS_DELIVER
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:57:13-59:29
+action#android.provider.Telephony.SMS_DELIVER
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:58:17-81
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:58:25-78
+receiver#pl.matkmiec.mobile.utils.MmsReceiver
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:62:9-70:20
+	android:exported
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:65:13-36
+	android:permission
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:64:13-71
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:63:13-46
+intent-filter#action:name:android.provider.Telephony.WAP_PUSH_DELIVER+data:mimeType:application/vnd.wap.mms-message
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:66:13-69:29
+action#android.provider.Telephony.WAP_PUSH_DELIVER
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:67:17-86
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:67:25-83
+service#pl.matkmiec.mobile.utils.HeadlessSmsSendService
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:72:9-84:19
+	android:exported
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:75:13-36
+	android:permission
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:74:13-77
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:73:13-57
+intent-filter#action:name:android.telephony.action.RESPOND_VIA_MESSAGE+category:name:android.intent.category.DEFAULT+data:scheme:mms+data:scheme:mmsto+data:scheme:sms+data:scheme:smsto
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:76:13-83:29
+action#android.telephony.action.RESPOND_VIA_MESSAGE
+ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:77:17-87
+	android:name
+		ADDED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml:77:25-84
 uses-sdk
 INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\mat-k\Desktop\Projekty\Java Project\safe-backup-project\mobile\src\main\AndroidManifest.xml

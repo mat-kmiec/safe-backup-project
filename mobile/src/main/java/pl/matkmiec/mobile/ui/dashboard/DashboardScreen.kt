@@ -1,15 +1,22 @@
 package pl.matkmiec.mobile.ui.dashboard
 
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Message
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,8 +29,28 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
     var selectedTabIndex by remember { mutableStateOf(0) }
     val tabs = listOf("All", "SMS", "CONTACTS")
     
+    // Context needed for interacting with content resolvers
+    val context = LocalContext.current
+    
     // Support dialog for backup creation choice
     var showCreateDialog by remember { mutableStateOf(false) }
+    var restoreBackupId by remember { mutableStateOf<Pair<String, String>?>(null) } // id to type
+
+    val permissions = arrayOf(
+        "android.permission.READ_CONTACTS",
+        "android.permission.WRITE_CONTACTS",
+        "android.permission.READ_SMS"
+    )
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) {
+        // Permissions handled
+    }
+
+    LaunchedEffect(Unit) {
+        permissionLauncher.launch(permissions)
+    }
 
     Scaffold(
         topBar = {
@@ -113,12 +140,13 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
                     } else {
                         LazyColumn(
                             verticalArrangement = Arrangement.spacedBy(12.dp),
-                            contentPadding = PaddingValues(bottom = 80.dp) // Leave space for FAB
+                            contentPadding = PaddingValues(bottom = 80.dp)
                         ) {
                             items(filteredBackups) { backup ->
                                 BackupCard(
                                     backup = backup,
-                                    onDelete = { viewModel.deleteBackup(backup.id) }
+                                    onDelete = { viewModel.deleteBackup(backup.id) },
+                                    onRestore = { restoreBackupId = Pair(backup.id, backup.type) }
                                 )
                             }
                         }
@@ -135,7 +163,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
                 text = { Text("What kind of backup would you like to create?") },
                 confirmButton = {
                     TextButton(onClick = { 
-                        viewModel.createBackup("SMS")
+                        viewModel.createBackup("SMS", context)
                         showCreateDialog = false 
                     }) {
                         Text("SMS")
@@ -143,10 +171,32 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
                 },
                 dismissButton = {
                     TextButton(onClick = { 
-                        viewModel.createBackup("CONTACTS")
+                        viewModel.createBackup("CONTACTS", context)
                         showCreateDialog = false 
                     }) {
                         Text("CONTACTS")
+                    }
+                }
+            )
+        }
+
+        if (restoreBackupId != null) {
+            AlertDialog(
+                onDismissRequest = { restoreBackupId = null },
+                icon = { Icon(Icons.Default.CloudDownload, contentDescription = null) },
+                title = { Text("Restore Backup") },
+                text = { Text("Are you sure you want to download and restore this ${restoreBackupId?.second} backup to your device?") },
+                confirmButton = {
+                    Button(onClick = { 
+                        viewModel.restoreBackup(restoreBackupId!!.first, restoreBackupId!!.second, context)
+                        restoreBackupId = null 
+                    }) {
+                        Text("Restore")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { restoreBackupId = null }) {
+                        Text("Cancel")
                     }
                 }
             )
@@ -155,7 +205,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
 }
 
 @Composable
-fun BackupCard(backup: BackupListDto, onDelete: () -> Unit) {
+fun BackupCard(backup: BackupListDto, onDelete: () -> Unit, onRestore: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -169,7 +219,7 @@ fun BackupCard(backup: BackupListDto, onDelete: () -> Unit) {
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val icon = if (backup.type.equals("SMS", true)) Icons.Default.Message else Icons.Default.Contacts
+            val icon = if (backup.type.equals("SMS", true)) Icons.AutoMirrored.Filled.Message else Icons.Default.Contacts
             Icon(
                 imageVector = icon,
                 contentDescription = null,
@@ -218,6 +268,15 @@ fun BackupCard(backup: BackupListDto, onDelete: () -> Unit) {
                 }
             }
 
+            if (!backup.type.equals("SMS", true)) {
+                IconButton(onClick = onRestore) {
+                    Icon(
+                        imageVector = Icons.Default.CloudDownload,
+                        contentDescription = "Restore Backup",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
             IconButton(onClick = onDelete) {
                 Icon(
                     imageVector = Icons.Default.DeleteOutline,
@@ -228,4 +287,3 @@ fun BackupCard(backup: BackupListDto, onDelete: () -> Unit) {
         }
     }
 }
-

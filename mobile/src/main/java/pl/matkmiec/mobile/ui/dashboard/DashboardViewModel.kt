@@ -1,5 +1,6 @@
 package pl.matkmiec.mobile.ui.dashboard
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -8,6 +9,7 @@ import kotlinx.coroutines.launch
 import pl.matkmiec.mobile.api.BackupListDto
 import pl.matkmiec.mobile.api.BackupUploadDto
 import pl.matkmiec.mobile.api.RetrofitClient
+import pl.matkmiec.mobile.utils.BackupManager
 
 sealed class DashboardState {
     object Loading : DashboardState()
@@ -30,7 +32,8 @@ class DashboardViewModel : ViewModel() {
                 val response = RetrofitClient.backupApi.getAllBackups()
                 if (response.isSuccessful) {
                     val list = response.body() ?: emptyList()
-                    _uiState.value = DashboardState.Success(list)
+                    val sortedList = list.sortedByDescending { it.createdAt }
+                    _uiState.value = DashboardState.Success(sortedList)
                 } else {
                     _uiState.value = DashboardState.Error("Failed to fetch backups: ${response.message()}")
                 }
@@ -45,31 +48,64 @@ class DashboardViewModel : ViewModel() {
             try {
                 val response = RetrofitClient.backupApi.deleteBackup(backupId)
                 if (response.isSuccessful) {
-                    // Update state locally or re-fetch
                     fetchBackups()
                 } else {
-                    // Could dispatch a one-time error event here, but for simplicity we ignore or log logic
-                    fetchBackups() // Will refresh the list anyway
+                    fetchBackups()
                 }
             } catch (e: Exception) {
                 // handle error silently
+                fetchBackups()
             }
         }
     }
 
-    fun createBackup(type: String) {
+    fun createBackup(type: String, context: Context) {
+        _uiState.value = DashboardState.Loading
         viewModelScope.launch {
             try {
-                val fakePayload = "This is a beautiful fake generated payload for $type backup at ${System.currentTimeMillis()}"
-                val request = BackupUploadDto(type = type, payload = fakePayload)
+                val payloadData = if (type == "SMS") {
+                    BackupManager.backupSms(context)
+                } else {
+                    BackupManager.backupContacts(context)
+                }
+
+                val request = BackupUploadDto(type = type, payload = payloadData)
                 val response = RetrofitClient.backupApi.uploadBackup(request)
                 if (response.isSuccessful) {
                     fetchBackups()
+                } else {
+                    _uiState.value = DashboardState.Error("Failed to upload $type backup")
                 }
             } catch (e: Exception) {
-                // ignore or handle error
+                _uiState.value = DashboardState.Error("Creation error: ${e.message}")
+            }
+        }
+    }
+
+    fun restoreBackup(backupId: String, type: String, context: Context) {
+        _uiState.value = DashboardState.Loading
+        viewModelScope.launch {
+            try {
+                val response = RetrofitClient.backupApi.getBackup(backupId)
+                if (response.isSuccessful && response.body() != null) {
+                    val payload = response.body()!!.payload
+                    if (type == "SMS") {
+                        BackupManager.restoreSms(context, payload)
+                    } else {
+                        BackupManager.restoreContacts(context, payload)
+                    }
+                    _uiState.value = DashboardState.Error("Successfully restored $type!")
+                    // Delaying refresh to clear success message
+                    kotlinx.coroutines.delay(2000)
+                    fetchBackups()
+                } else {
+                    _uiState.value = DashboardState.Error("Failed to load backup payload")
+                }
+            } catch (e: Exception) {
+                 _uiState.value = DashboardState.Error("Restore error: ${e.message}")
             }
         }
     }
 }
+
 
