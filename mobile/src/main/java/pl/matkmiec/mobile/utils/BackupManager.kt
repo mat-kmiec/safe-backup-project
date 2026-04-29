@@ -135,11 +135,9 @@ object BackupManager {
                 put(Telephony.Sms.DATE, sms.date)
                 put(Telephony.Sms.TYPE, sms.type)
                 put(Telephony.Sms.STATUS, sms.status)
-                put(Telephony.Sms.READ, 1) // default restored as read
+                put(Telephony.Sms.READ, 1)
             }
             try {
-                // Restoring SMS works seamlessly only on very old Android versions, 
-                // or if the app is set as Default SMS App on Android 4.4+
                 context.contentResolver.insert(Telephony.Sms.CONTENT_URI, values)
             } catch (e: Exception) {
                 e.printStackTrace()

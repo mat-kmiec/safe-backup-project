@@ -28,11 +28,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     var selectedTabIndex by remember { mutableStateOf(0) }
     val tabs = listOf("All", "SMS", "CONTACTS")
-    
-    // Context needed for interacting with content resolvers
     val context = LocalContext.current
-    
-    // Support dialog for backup creation choice
     var showCreateDialog by remember { mutableStateOf(false) }
     var restoreBackupId by remember { mutableStateOf<Pair<String, String>?>(null) } // id to type
 

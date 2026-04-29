@@ -29,7 +29,7 @@ class DashboardViewModel : ViewModel() {
         _uiState.value = DashboardState.Loading
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.backupApi.getAllBackups()
+                val response = RetrofitClient.tbackupApi.getAllBackups()
                 if (response.isSuccessful) {
                     val list = response.body() ?: emptyList()
                     val sortedList = list.sortedByDescending { it.createdAt }
